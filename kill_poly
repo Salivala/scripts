@@ -1,0 +1,8 @@
+#/bin/sh
+#Kill all running polybar instances
+
+ps -ef | grep polybar | awk '{print $2}' > polybars.txt
+while read process; do 
+	kill -9 "$process"
+done < polybars.txt
+rm polybars.txt

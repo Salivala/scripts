@@ -1,0 +1,1 @@
+man -T $1 | zathura - &

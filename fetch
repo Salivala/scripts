@@ -1,0 +1,10 @@
+#!/usr/bin/sh
+font=$(echo "Monospace-12:normal")
+if [ "$#" = 1 ]
+then
+    res=$(echo "$1" | awk '{$1=$2=""; print NR-1, $0}' | dmenu -l 20 -b -y 14 -fn $font -p "Results")
+    choice=$(echo $res | awk '{print $1}')
+    echo $choice
+else
+    echo "" | dmenu -l 20 -b -y 14 -fn $font -p "Search For Video"
+fi

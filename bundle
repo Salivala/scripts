@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ $# -eq 0 ] 
+then
+	exit 1
+else
+	name=$1
+fi
+if [ $# -eq 2 ] && [ "$2" == "init" ]
+then
+    echo "from __future__ import print_function" >> $1.py
+    echo >> $1.py
+    echo "def main_func():" >> $1.py
+    echo    "    print(\"stub\")" >> $1.py
+    echo >> $1.py
+    echo "if __name__ == \"__main__\":" >> $1.py
+    echo "    main_func()" >> $1.py
+fi
+main_file="$name.py"
+
+
+mkdir "$name"
+cp -r $main_file ./"$name"/__main__.py 2> /dev/null
+cp -r $(ls *.py | grep -v $main_file) ./"$name"/ 2> /dev/null
+cd ./$name
+zip ../$name $(ls *.py)
+cd ..
+
+if [ ! -d "output" ]
+then
+	mkdir output
+fi
+
+mv $name.zip ./output
+chmod 777 ./output/$name.zip
+rm -r $name
+mv ./output/$name.zip ./output/$name

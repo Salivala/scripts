@@ -1,0 +1,3 @@
+#!/bin/bash
+kill_poly
+$HOME/.config/i3/run_polybar.sh
