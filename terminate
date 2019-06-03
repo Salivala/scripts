@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+# get every process id that contains the argument and delete it.
+ps -ef | grep $1 | grep -v terminate | awk '{print $2}' > $1.txt
+while read process; do
+    if ! [ grep -q "terminate" "$process" ]
+    then
+        kill -9 "$process"
+    fi
+done < $1.txt
+echo "Test"
+rm $1.txt
+
