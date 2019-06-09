@@ -1,0 +1,4 @@
+# Ignore git stuff
+
+^\README.md
+^\LICENSE
