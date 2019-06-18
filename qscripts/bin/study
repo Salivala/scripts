@@ -1,0 +1,16 @@
+#!/usr/bin/sh
+
+scan() 
+{
+    if [[ -d $1 ]] 
+    then
+        chosen=$(ls $1 | dmenu -l 20 -i)
+        scan "$1/$chosen"
+    else
+        echo "$1"
+    fi
+}
+#xdg-open /home/hayden/Documents/books/$book
+#name=$(ls /home/hayden/Documents/books/ | dmenu -l 20 -i)
+name=$(scan /home/hayden/Documents/books)
+xdg-open $name
