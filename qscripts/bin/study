@@ -10,7 +10,5 @@ scan()
         echo "$1"
     fi
 }
-#xdg-open /home/hayden/Documents/books/$book
-#name=$(ls /home/hayden/Documents/books/ | dmenu -l 20 -i)
 name=$(scan /home/hayden/Documents/books)
 xdg-open $name
